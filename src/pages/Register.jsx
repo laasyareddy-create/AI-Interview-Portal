@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { registerSchema } from "../utils/validation";
+import { registerSchema } from "../utils/Validation";
 import { registerUser } from "../services/authService";
 
 import {
