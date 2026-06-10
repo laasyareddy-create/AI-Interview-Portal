@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
-import { loginSchema } from "../utils/validation";
+import { loginSchema } from "../utils/Validation";
 import { loginUser } from "../services/authService";
 import { login } from "../redux/authSlice";
 
