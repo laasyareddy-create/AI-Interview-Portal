@@ -209,7 +209,7 @@ src/
 
 
 ```text
-interview-portal-backend4/
+backend/
 │
 ├── src/
 │   ├── main/
