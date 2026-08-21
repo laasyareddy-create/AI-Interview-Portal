@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import MainLayout from "../layouts/MainLayout";
 import loginBg from "../assets/login-bg.png";
 
-import { getAdminAnalytics } from "../services/analyticsService";
+import { getAdminAnalytics } from "../services/AnalyticsService";
 
 import {
   FaUsers,
