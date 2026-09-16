@@ -8,6 +8,7 @@ import {
   FaTrash,
   FaList,
   FaPlus,
+  FaMagic,
 } from "react-icons/fa";
 import {
   getAllAssessments,
@@ -91,15 +92,31 @@ function AssessmentManagement() {
               </p>
             </div>
 
-            <button
-              onClick={() =>
-                navigate("/create-assessment")
-              }
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-md hover:shadow-lg transition"
-            >
-              <FaPlus />
-              Create Assessment
-            </button>
+            <div className="flex flex-wrap items-center gap-3">
+
+  {/* Manual Assessment Creation */}
+  <button
+    onClick={() =>
+      navigate("/create-assessment")
+    }
+    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-md hover:shadow-lg transition"
+  >
+    <FaPlus />
+    Create Assessment
+  </button>
+
+  {/* AI Assessment Generation */}
+  <button
+    onClick={() =>
+      navigate("/generate-assessment-ai")
+    }
+    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 text-white font-semibold shadow-md hover:shadow-lg transition"
+  >
+    <FaMagic />
+    Generate with AI
+  </button>
+
+</div>
 
           </div>
 

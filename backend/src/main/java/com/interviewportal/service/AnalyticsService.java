@@ -14,9 +14,11 @@ import com.interviewportal.repository.AssessmentAttemptRepository;
 import com.interviewportal.repository.MockInterviewAnswerRepository;
 import com.interviewportal.repository.MockInterviewRepository;
 import com.interviewportal.repository.UserRepository;
-import com.interviewportal.service.ai.GeminiService;
+import com.interviewportal.service.ai.AzureOpenAIService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -30,7 +32,8 @@ public class AnalyticsService {
     private final MockInterviewAnswerRepository mockInterviewAnswerRepository;
     private final UserRepository userRepository;
     private final AnalyticsSummaryRepository analyticsSummaryRepository;
-    private final GeminiService geminiService;
+    private final AzureOpenAIService azureOpenAIService;
+    private final ObjectMapper objectMapper;
 
     public AnalyticsResponse getStudentAnalytics(Long studentId) {
 
@@ -223,9 +226,53 @@ public class AnalyticsService {
             System.out.println(interviewHistory);
             System.out.println("======================================");
 
+            String prompt = """
+        You are an AI performance analyst for an interview preparation portal.
+
+        Analyze the student's assessment and mock interview performance below.
+
+        Provide:
+        1. An overall performance summary.
+        2. A list of the student's strengths.
+        3. A list of areas that need improvement.
+
+        Keep the feedback specific to the student's actual performance.
+        Do not invent performance data.
+        Keep the feedback constructive and concise.
+
+        Return ONLY valid JSON in exactly this structure:
+
+        {
+          "overallFeedback": "Overall performance summary",
+          "strengths": [
+            "Strength 1",
+            "Strength 2"
+          ],
+          "improvements": [
+            "Improvement 1",
+            "Improvement 2"
+          ]
+        }
+
+        Student Performance Data:
+        %s
+        """.formatted(interviewHistory);
+
+            String aiRawResponse =
+                    azureOpenAIService.generateContent(prompt);
+
+            JsonNode aiJson =
+                    objectMapper.readTree(
+                            aiRawResponse
+                                    .replace("```json", "")
+                                    .replace("```", "")
+                                    .trim()
+                    );
+
             aiResponse =
-                    geminiService.generateAnalyticsSummary(
-                            interviewHistory.toString()
+                    objectMapper.convertValue(
+                            aiJson,
+                            AnalyticsAIResponse.class
                     );
 
             System.out.println("========== ANALYTICS RESPONSE ==========");

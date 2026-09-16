@@ -7,6 +7,7 @@ import {
   FiEdit2,
   FiTrash2,
 } from "react-icons/fi";
+import { FaMagic } from "react-icons/fa";
 import MainLayout from "../layouts/MainLayout";
 import {
   getAllMockInterviews,
@@ -84,12 +85,26 @@ const MockInterviewManagement = () => {
               </p>
             </div>
 
-            <button
-              onClick={() => navigate("/create-mock-interview")}
-              className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl transition"
-            >
-              + Create Interview
-            </button>
+            <div className="flex flex-wrap items-center gap-3">
+
+  {/* Manual Mock Interview Creation */}
+  <button
+    onClick={() => navigate("/create-mock-interview")}
+    className="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl transition font-semibold"
+  >
+    + Create Interview
+  </button>
+
+  {/* AI Mock Interview Generation */}
+  <button
+    onClick={() => navigate("/generate-mock-interview-ai")}
+    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl transition font-semibold shadow-md"
+  >
+    <FaMagic />
+    Generate with AI
+  </button>
+
+</div>
 
           </div>
 

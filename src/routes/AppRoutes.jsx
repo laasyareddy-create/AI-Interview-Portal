@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
+import GenerateAssessmentAI from "../pages/GenerateAssessmentAI";
 import ProtectedRoute from "../components/ProtectedRoute";
 import RoleProtectedRoute from "../components/RoleProtectedRoute";
+import GenerateMockInterviewAI from "../pages/GenerateMockInterviewAI";
 
 const Login = lazy(() => import("../pages/Login"));
 const VerifyOtp = lazy(() => import("../pages/VerifyOtp"));
@@ -213,6 +215,16 @@ const AppRoutes = () => {
               </RoleProtectedRoute>
             }
           />
+
+          <Route
+  path="/generate-assessment-ai"
+  element={<GenerateAssessmentAI />}
+/>
+
+<Route
+  path="/generate-mock-interview-ai"
+  element={<GenerateMockInterviewAI />}
+/>
 
           <Route
             path="/assessment-management/:assessmentId/questions"

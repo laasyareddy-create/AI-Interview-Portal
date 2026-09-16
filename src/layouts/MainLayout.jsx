@@ -28,9 +28,9 @@ const MainLayout = ({ children }) => {
       <div className="flex">
 
         {/* Desktop Sidebar */}
-        <div className="hidden md:block">
-          <Sidebar />
-        </div>
+<div className="hidden md:block fixed left-0 top-0 h-screen z-30">
+  <Sidebar />
+</div>
 
         {/* Mobile Sidebar */}
         {sidebarOpen && (
@@ -61,11 +61,11 @@ const MainLayout = ({ children }) => {
         )}
 
         {/* Main Content */}
-        <div className="flex-1">
-          <main className="p-6">
-            {children}
-          </main>
-        </div>
+<div className="flex-1 md:ml-72">
+  <main className="p-6">
+    {children}
+  </main>
+</div>
 
       </div>
     </div>

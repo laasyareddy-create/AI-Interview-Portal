@@ -4,7 +4,7 @@ import com.interviewportal.dto.ai.AiEvaluationRequest;
 import com.interviewportal.dto.ai.AiEvaluationResponse;
 import com.interviewportal.entity.MockInterviewAnswer;
 import com.interviewportal.entity.MockInterviewQuestion;
-import com.interviewportal.service.ai.GeminiService;
+import com.interviewportal.service.ai.AzureOpenAIService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AIEvaluationService {
 
-    private final GeminiService geminiService;
+    private final AzureOpenAIService azureOpenAIService;
 
     public void evaluate(
             MockInterviewQuestion question,
@@ -74,7 +74,7 @@ public class AIEvaluationService {
                             .build();
 
             AiEvaluationResponse response =
-                    geminiService.evaluateAnswer(request);
+                    azureOpenAIService.evaluateAnswer(request);
 
             int score = (int) Math.round(response.getScore());
 

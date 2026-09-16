@@ -49,3 +49,11 @@ export const deleteAssessment = async (id) => {
   );
   return response.data;
 };
+
+export const generateAssessmentWithAI = async (data) => {
+  const response = await api.post(
+    "/admin/ai/assessments/generate",
+    data
+  );
+  return response.data;
+};

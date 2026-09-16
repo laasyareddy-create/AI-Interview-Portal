@@ -39,7 +39,9 @@ public class SecurityConfig {
                         // Public endpoints
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/gemini/**").permitAll()
+                        .requestMatchers("/azure-test").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+
 
                         // Student-only
                         .requestMatchers("/dashboard").hasRole("student")
@@ -73,6 +75,7 @@ public class SecurityConfig {
                         // Admin-only
                         .requestMatchers("/users/**").hasRole("admin")
                         .requestMatchers("/analytics/admin").hasRole("admin")
+                        .requestMatchers("/admin/ai/**").hasRole("admin")
 
                         // All authenticated users
                         .anyRequest().authenticated()
