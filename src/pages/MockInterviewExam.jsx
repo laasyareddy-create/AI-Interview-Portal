@@ -652,7 +652,7 @@ const MockInterviewExam = () => {
                 {(question.sampleInput ||
                   question.sampleOutput) && (
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+                  <div className="flex flex-col gap-5 mb-6">
 
                     {question.sampleInput && (
 
